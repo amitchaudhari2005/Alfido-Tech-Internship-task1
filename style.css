@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --secondary: #06b6d4;
+    --accent: #f97316;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f8fafc;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.gradient-border {
+    position: relative;
+    border-radius: 0.75rem;
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+    overflow: hidden;
+}
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    transform: translateX(-100%);
+    animation: border-flow 3s linear infinite;
+}
+@keyframes border-flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.profile-img {
+    position: relative;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.profile-img:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+.profile-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(79, 70, 229, 0.4) 0%, rgba(6, 182, 212, 0.4) 100%);
+    z-index: 1;
+}
+
+.project-card {
+    transition: 
+        transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+        box-shadow 0.4s cubic-bezier(0.4,0.2,0.2,1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: rgba(30, 41, 59, 0.85);
+    border: 2px solid rgba(79, 70, 229, 0.18);
+    box-shadow:
+        0 8px 32px 0 rgba(79, 70, 229, 0.22),
+        0 4px 24px 0 rgba(6, 182, 212, 0.18),
+        0 0 0 4px rgba(79, 70, 229, 0.10),
+        0 0 40px 8px var(--secondary),
+        0 0 80px 16px var(--primary);
+}
+.project-card:hover {
+    transform: translateY(-18px) scale(1.04) rotate(-1deg);
+    box-shadow:
+        0 16px 48px 0 rgba(79, 70, 229, 0.32),
+        0 8px 32px 0 rgba(6, 182, 212, 0.22),
+        0 0 0 8px rgba(79, 70, 229, 0.18),
+        0 0 80px 16px var(--secondary),
+        0 0 160px 32px var(--primary),
+        0 0 0 2px var(--accent);
+    z-index: 3;
+}
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: -120%;
+    left: -120%;
+    width: 140%;
+    height: 140%;
+    background: linear-gradient(60deg, transparent, rgba(255,255,255,0.14), transparent 80%);
+    transition: all 0.6s cubic-bezier(0.4,0.2,0.2,1);
+    pointer-events: none;
+}
+.project-card:hover::before {
+    top: 120%;
+    left: 120%;
+}
+.project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 80%, transparent 100%);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    transform: translateY(110%);
+    transition: transform 0.4s cubic-bezier(0.4,0.2,0.2,1);
+    color: #f8fafc;
+    border-bottom-left-radius: 1.25rem;
+    border-bottom-right-radius: 1.25rem;
+}
+.project-card:hover .project-overlay {
+    transform: translateY(0);
+}
+.project-card .project-overlay h3,
+.project-card .project-overlay p {
+    text-shadow: 0 2px 12px rgba(0,0,0,0.22);
+}
+.project-card .project-overlay .btn {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+    transition: background 0.3s;
+    box-shadow: 0 2px 12px 0 rgba(6, 182, 212, 0.18);
+}
+.project-card .project-overlay .btn:hover {
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    box-shadow: 0 4px 24px 0 rgba(79, 70, 229, 0.22);
+}
+
+@media (max-width: 1024px) {
+    .project-card {
+        border-radius: 1rem;
+    }
+    .project-overlay {
+        padding: 1.25rem 1rem 1rem 1rem;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
+}
+@media (max-width: 768px) {
+    .project-card {
+        border-radius: 0.75rem;
+    }
+    .project-overlay {
+        padding: 1rem 0.75rem 0.75rem 0.75rem;
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
+    }
+}
+
+.skill-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+.skill-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    width: 0;
+    transition: width 1.5s ease;
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: -1;
+    opacity: 0.4;
+}
+.blob-1 {
+    top: 10%;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    background: var(--primary);
+    animation: blob-move 15s infinite alternate;
+}
+.blob-2 {
+    bottom: 20%;
+    right: 10%;
+    width: 400px;
+    height: 400px;
+    background: var(--secondary);
+    animation: blob-move 20s infinite alternate-reverse;
+}
+.blob-3 {
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: var(--accent);
+    animation: blob-move 12s infinite alternate;
+}
+@keyframes blob-move {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(50px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid var(--secondary);
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--secondary) }
+}
+
+.counter {
+    display: inline-block;
+}
+
+.social-icon {
+    transition: all 0.3s ease;
+}
+.social-icon:hover {
+    transform: translateY(-5px);
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.scroll-down {
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
